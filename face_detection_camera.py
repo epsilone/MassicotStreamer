@@ -26,19 +26,17 @@ while True:
 	_, initial_frame = cam.read()
 	initial_frame_dimension = initial_frame.shape[:2]
 	frame = imutils.resize(initial_frame, width=400)
-	
-	if generate_scream_gif:
 
+	if generate_scream_gif:
 		if time_now - start_time_scream_gif < GIF_LENGTH_LIMIT:
-			video_saver.write_frame(initial_frame)
+			video_saver.write_frame(frame)
 		else:
-			print("[INFO] Release video...")
 			video_saver.release_video()
 			generate_scream_gif = False
 	# We did the detection only on 1 frame by second
-	elif (int(time_now - start_capturing_time)) > FPS_LIMIT: 
+	elif (int(time_now - start_capturing_time)) > FPS_LIMIT:
 		frame_resized = cv2.resize(frame, (300, 300))
-		
+
 		detections = face_detect.generate_detections(frame_resized)
 
 		for i in range(0, detections.shape[2]):
@@ -46,7 +44,7 @@ while True:
 
 			if detection_confidence < face_detect.confidence:
 				continue
-			print("[INFO] Saving video...")
+			print("[INFO][CAMERA] Start saving video...")
 			start_time_scream_gif = time.time()
 			generate_scream_gif = True
 			video_saver = VideoSaver()
@@ -55,9 +53,9 @@ while True:
 			# Start sound
 			# Start blowing air
 	# comment these 3 lines if you're run this on the raspberry
-	cv2.imshow('Preview', frame) 
-	if cv2.waitKey(1) & 0xFF == ord('c'):
-		break
+	# cv2.imshow('Preview', frame)
+	# if cv2.waitKey(1) & 0xFF == ord('c'):
+	# 	break
 
 cv2.destroyAllWindows()
 cam.stop()
