@@ -27,4 +27,4 @@ class VideoSaver:
 
     def generate_video_file_name(self):
         now = datetime.datetime.now()
-        return "video_{}.avi".format(now.isoformat()
+        return "video_{}.avi".format(now.isoformat())
