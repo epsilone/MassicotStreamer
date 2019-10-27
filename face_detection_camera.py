@@ -11,6 +11,11 @@ FPS_LIMIT = 1 # Try to see the perf without fps limit
 GIF_LENGTH_LIMIT = 15 # The length of the gif video
 TIME_BEFORE_SOUND = 5
 
+WAITING_FOR_FACE = 1
+WAITING_TO_PLAY_SOUND = 2
+WAITING_TO_SPRAY_AIR = 3
+WAITING_TO_COMPLETE_GIF = 4
+
 video_saver = None
 face_detect = FaceDetection()
 guillotine = GuillotineHW()
@@ -22,7 +27,7 @@ last_capturing_time = 0
 face_detected_time = 0
 waiting_for_air = 0
 time_to_stop_air = 0
-
+state = WAITING_FOR_FACE
 
 while True:
     time_now = time.time()
@@ -41,18 +46,22 @@ while True:
             video_saver = None
             face_detected_time = 0
             waiting_for_air = 0
+            time_to_stop_air = 0
+            state = WAITING_FOR_FACE
 
         # State machine for hardware.
-        if not waiting_for_air and time_since_detection > TIME_BEFORE_SOUND:
+
+        if state == WAITING_TO_PLAY_SOUND and time_since_detection > TIME_BEFORE_SOUND:
             waiting_for_air = time_since_detection + guillotine.start_sound()
+            state = WAITING_TO_SPRAY_AIR
 
-        if waiting_for_air and time_since_detection > waiting_for_air:
+        elif state == WAITING_TO_SPRAY_AIR and time_since_detection > waiting_for_air:
             time_to_stop_air = time_since_detection + guillotine.start_air()
-            waiting_for_air = 0
+            state = WAITING_TO_STOP_AIR
 
-        if time_to_stop_air and time_since_detection > time_to_stop_air:
+        elif state == WAITING_TO_STOP_AIR and time_since_detection > time_to_stop_air:
             guillotine.stop_air()
-            time_to_stop_air = 0
+            state = WAITING_TO_COMPLETE_GIF
 
     elif (int(time_now - last_capturing_time)) > FPS_LIMIT:
         # Only try to detect every 1s.
