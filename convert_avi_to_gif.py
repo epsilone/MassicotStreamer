@@ -3,7 +3,7 @@ from os.path import join, dirname, realpath
 videos_path = join(dirname(realpath(__file__)), 'videos/')
 video_files = []
 for (dirpath, dirnames, filenames) in walk(videos_path):
-    video_files.extend([file for file in filenames if file[0] != "."])
+    video_files.extend([file for file in filenames if file[0] != "." and file.split(".")[1] == "avi"])
     break
 
 for video in video_files:

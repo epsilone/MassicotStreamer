@@ -55,7 +55,7 @@ while True:
 	# comment these 3 lines if you're run this on the raspberry
 	# cv2.imshow('Preview', frame)
 	# if cv2.waitKey(1) & 0xFF == ord('c'):
-	# 	break
+	#	break
 
 cv2.destroyAllWindows()
 cam.stop()
