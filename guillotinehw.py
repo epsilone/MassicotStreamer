@@ -19,10 +19,9 @@ class GuillotineHW:
         pygame.mixer.init()    
         sound1 = pygame.mixer.Sound(file=filesound1)
         sound2 = pygame.mixer.Sound(file=filesound2)
-        sounds = [sound1, sound2]
-        for s in sounds:
+        self.sounds = [sound1, sound2]
+        for s in self.sounds:
             s.set_volume(1)
-        self.spraying = False
 
     def start_air(self):
         GPIO.output(RELAIS_SPRAY, GPIO.HIGH) # on
@@ -34,7 +33,7 @@ class GuillotineHW:
         print("stopair")
 
     def start_sound(self):
-        sound = choice(sounds)
+        sound = choice(self.sounds)
         print("playing sound")
         sound_length = sound.get_length()
         sound.play()        
