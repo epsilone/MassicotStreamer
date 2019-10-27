@@ -24,22 +24,22 @@ class GuillotineHW:
             s.set_volume(1)
         self.spraying = False
 
-    def start_air():
+    def start_air(self):
         GPIO.output(RELAIS_SPRAY, GPIO.HIGH) # on
         print("ffffff")
         return 0.5
 
-    def stop_air():
+    def stop_air(self):
         GPIO.output(RELAIS_SPRAY, GPIO.LOW) # of
         print("stopair")
 
-    def start_sound():
+    def start_sound(self):
         sound = choice(sounds)
         print("playing sound")
         sound_length = sound.get_length()
         sound.play()        
         return sound_length - 1
 
-    def __del__():
+    def __del__(self):
         print("cleaning GPIO")
         GPIO.cleanup()
