@@ -14,7 +14,8 @@ TIME_BEFORE_SOUND = 5
 WAITING_FOR_FACE = 1
 WAITING_TO_PLAY_SOUND = 2
 WAITING_TO_SPRAY_AIR = 3
-WAITING_TO_COMPLETE_GIF = 4
+WAITING_TO_STOP_AIR = 4
+WAITING_TO_COMPLETE_GIF = 5 
 
 video_saver = None
 face_detect = FaceDetection()
@@ -77,6 +78,7 @@ while True:
             print("[INFO][CAMERA] Start saving video...")
             face_detected_time = time_now
             video_saver = VideoSaver()
+            state = WAITING_TO_PLAY_SOUND
             # we found a face!
             break
     # comment these 3 lines if you're run this on the raspberry
