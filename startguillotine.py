@@ -1,3 +1,5 @@
+import time
+
 from detection import CameraDetection
 from guillotinehw import GuillotineHW
 from saving_video import VideoSaver
