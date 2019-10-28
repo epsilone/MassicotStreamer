@@ -78,6 +78,7 @@ while True:
             print("[INFO][CAMERA] Start saving video...")
             face_detected_time = time_now
             video_saver = VideoSaver()
+            video_saver.write_frame(frame)
             state = WAITING_TO_PLAY_SOUND
             # we found a face!
             break

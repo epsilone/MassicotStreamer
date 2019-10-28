@@ -39,6 +39,9 @@ class GuillotineHW:
         sound.play()        
         return sound_length - 1
 
+    def is_step_detected(self):
+        return GPIO.input(MAT_INPUT)
+
     def __del__(self):
         print("cleaning GPIO")
         GPIO.cleanup()
