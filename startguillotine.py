@@ -88,6 +88,7 @@ class Guillotine(object):
             self.video_saver.write_frame(frame)
             if now > self.time_to_next:
                 self.video_saver.release_video()
+                self.state = NO_CLIENT
 
     def __del__(self):
         if self.video_saver:
