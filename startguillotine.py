@@ -48,7 +48,7 @@ class Guillotine(object):
     def game_loop(self):
         frame = self.camera.get_frame()
         now = time.time()
-        if state == NO_CLIENT:
+        if self.state == NO_CLIENT:
             if self.detect_face(now, frame):
                 return
             elif self.hw.is_step_detected():
