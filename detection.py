@@ -11,7 +11,7 @@ class CameraDetection(object):
         self.debug = debug
 
     def get_frame(self):
-        _, initial_frame = cam.read()
+        _, initial_frame = self.cam.read()
         initial_frame_dimension = initial_frame.shape[:2]
         frame = imutils.resize(initial_frame, width=400)
         return frame
@@ -32,4 +32,4 @@ class CameraDetection(object):
 
     def __del__(self):
         cv2.destroyAllWindows()
-        cam.stop()
+        self.cam.stop()
