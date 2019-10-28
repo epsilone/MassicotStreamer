@@ -20,7 +20,7 @@ class CameraDetection(object):
         if self.debug:
             cv2.imshow('Preview', frame)
             if cv2.waitKey(1) & 0xFF == ord('c'):
-                break
+                return False
         frame_resized = cv2.resize(frame, (300, 300))
         detections = self.face_detect.generate_detections(frame_resized)
         for i in range(0, detections.shape[2]):
