@@ -46,15 +46,15 @@ class Guillotine(object):
         now = time.time()
         if state == NO_CLIENT:
             if self.detect_face(now, frame):
-                continue
+                return
             elif self.hw.is_step_detected():
                 self.time_to_next = now + TIME_STEP_CONFIRMED_CLIENT
                 self.state = CLIENT_STEP_ONLY
-                continue
+                return
         elif self.state == CLIENT_STEP_ONLY:
             if self.detect_face(now, frame):
                 # if we find a face, stop looking for the feet.
-                continue
+                return
             if self.hw.is_step_detected():
                 if now > self.time_to_next:
                     self.we_have_a_client(now, frame)
@@ -62,7 +62,7 @@ class Guillotine(object):
                 # client is not there anymore
                 # or it was a fluck
                 self.init_guillotine()
-                continue
+                return
         elif self.state == CLIENT_CONFIRMED:
             self.video_saver.write_frame(frame)
             # We are waiting that client is confortable.
