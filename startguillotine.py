@@ -21,7 +21,9 @@ class Guillotine(object):
     def __init__(self):
         self.hw = GuillotineHW()
         self.camera = CameraDetection(debug=False)
-        self.init_guillotine()
+        self.time_to_next = 0
+        self.video_saver = None
+        self.state = NO_CLIENT
 
     def init_guillotine(self):
         self.time_to_next = 0

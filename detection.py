@@ -4,7 +4,7 @@ import cv2
 
 
 class CameraDetection(object):
-    def init(self, debug=False):
+    def __init__(self, debug=False):
         print("[INFO] starting video detection.")
         self.cam = cv2.VideoCapture(0)
         self.face_detect = FaceDetection()
