@@ -35,7 +35,7 @@ class Guillotine(object):
     def detect_face(self, now, frame):
         face_detected = self.camera.is_face_detected(frame)
         if face_detected:
-            self.we_have_a_client(now, fame)
+            self.we_have_a_client(now, frame)
             return True
         return False
 
