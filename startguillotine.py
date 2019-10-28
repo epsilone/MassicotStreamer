@@ -20,7 +20,7 @@ HEAD_CHOPPED = 6
 class Guillotine(object):
     def __init__(self):
         self.hw = GuillotineHW()
-        self.camera = CameraDetection()
+        self.camera = CameraDetection(debug=False)
         self.init_guillotine()
 
     def init_guillotine(self):
