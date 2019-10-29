@@ -8,7 +8,7 @@ class VideoSaver:
     def __init__(self, fps=15, codec=["M", "J", "P", "G"]):
         self.filename = self.generate_video_file_name()
         self.output_path = join(UPLOAD_FOLDER, self.filename)
-        self.fps = fps
+        self.fps = float(fps)
         self.codec = codec
         self.fourcc = cv2.VideoWriter_fourcc(*self.codec)
         self.writer = None
