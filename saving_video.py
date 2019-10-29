@@ -5,7 +5,7 @@ from os.path import join, dirname, realpath
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'videos/')
 
 class VideoSaver:
-    def __init__(self, fps=15, codec=["M", "J", "P", "G"]):
+    def __init__(self, fps=10, codec=["M", "J", "P", "G"]):
         self.filename = self.generate_video_file_name()
         self.output_path = join(UPLOAD_FOLDER, self.filename)
         self.fps = float(fps)
