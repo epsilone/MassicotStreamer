@@ -5,7 +5,7 @@ from guillotinehw import GuillotineHW
 from saving_video import VideoSaver
 
 # ------------------- SYNC TIME ------------------- #
-TIME_STEP_CONFIRMED_CLIENT = 3  # we can start recording after 3s of confirmed step as if there was a clear picture.
+TIME_STEP_CONFIRMED_CLIENT = 2  # we can start recording after 3s of confirmed step as if there was a clear picture.
 TIME_BETWEEN_CONFIRMED_AND_SOUND = 3  # 3s after a face detection or a step confirmed
 TIME_AFTER_CHOPPED = 5
 # ------------------------------------------------- #
@@ -61,6 +61,7 @@ class Guillotine(object):
                 return
             if self.hw.is_step_detected():
                 if now > self.time_to_next:
+                    print("client from mat.")
                     self.we_have_a_client(now, frame)
             else:
                 # client is not there anymore
