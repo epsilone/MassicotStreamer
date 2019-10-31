@@ -32,4 +32,4 @@ class CameraDetection(object):
 
     def __del__(self):
         cv2.destroyAllWindows()
-        self.cam.stop()
+        self.cam.release()
